@@ -2,6 +2,9 @@
 
 UAE-based company building Arabic web products. This repo is a single-file static landing page deployed as `index.html`.
 
+## Contact
+- Official email: contact@emdash.ae
+
 ## Files
 
 - `index.html` — the live site (committed and deployed)
