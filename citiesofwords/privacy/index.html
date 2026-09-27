@@ -1,98 +1,409 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-lang="ar">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>سياسة الخصوصية — مدن الكلمات</title>
+<title>سياسة الخصوصية — مدن الكلمات | Emdash</title>
+<meta name="description" content="سياسة الخصوصية للعبة «مدن الكلمات» من إم داش. Privacy policy for the game Cities of Words by Emdash.">
+<link rel="canonical" href="https://emdash.ae/citiesofwords/privacy">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=IBM+Plex+Sans+Arabic:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Reem+Kufi:wght@500&display=swap" rel="stylesheet">
 <style>
-  body { margin: 0; background: #fff; color: #1d1d1f; font: 17px/1.7 system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
-  h1 { font-size: 26px; margin: 0 0 4px; }
-  h2 { font-size: 19px; margin: 28px 0 6px; }
-  p, li { margin: 6px 0; }
-  .date { color: #666; margin-bottom: 24px; }
-  hr { border: 0; border-top: 1px solid #ddd; margin: 48px 0; }
-  section[lang="en"] { direction: ltr; text-align: left; }
-  a { color: #0a58ca; }
+  :root {
+    --bg: #050505;
+    --ink: #f5f1ea;
+    --ink-dim: rgba(245, 241, 234, 0.62);
+    --ink-faint: rgba(245, 241, 234, 0.34);
+    --rule: rgba(245, 241, 234, 0.12);
+    --rule-strong: rgba(245, 241, 234, 0.22);
+    --gold: #d9b56b;
+    --teal: #7fb5a3;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--ink);
+    font-family: "Bodoni Moda", "Didot", "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--ink); color: var(--bg); }
+  a { color: inherit; text-decoration: none; }
+
+  .vignette {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255, 245, 230, 0.05), transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(255, 220, 180, 0.03), transparent 60%);
+  }
+  .grain {
+    position: fixed; inset: -50%; z-index: 2; pointer-events: none;
+    opacity: 0.14; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation: grain 8s steps(8) infinite;
+  }
+  @keyframes grain {
+    0% { transform: translate(0,0); } 20% { transform: translate(-3%,2%); }
+    40% { transform: translate(2%,-4%); } 60% { transform: translate(-4%,-2%); }
+    80% { transform: translate(3%,3%); } 100% { transform: translate(0,0); }
+  }
+  .corners { position: fixed; inset: clamp(16px, 2.4vw, 28px); pointer-events: none; z-index: 4; }
+  .corners i { position: absolute; width: 12px; height: 12px; border: 1px solid var(--ink-faint); }
+  .corners i:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+  .corners i:nth-child(2) { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+  .corners i:nth-child(3) { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+  .corners i:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+  .shell {
+    position: relative; z-index: 5;
+    max-width: 1100px; margin: 0 auto;
+    padding: clamp(20px, 3vw, 36px) clamp(20px, 5vw, 64px);
+  }
+  nav.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 24px; border-bottom: 1px solid var(--rule);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim);
+    direction: ltr;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 500; }
+  .brand .pip {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ink); box-shadow: 0 0 12px rgba(245,241,234,0.5);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.25); } }
+  .lang { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 999px; overflow: hidden; }
+  .lang button {
+    appearance: none; background: transparent; color: var(--ink-dim); border: 0;
+    font: inherit; font-size: 11px; letter-spacing: 0.22em; padding: 8px 14px; cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .lang button.active { background: var(--ink); color: var(--bg); }
+  .lang button:hover:not(.active) { color: var(--ink); }
+
+  .hero {
+    position: relative;
+    padding: clamp(44px, 7vw, 100px) clamp(24px, 5vw, 72px) clamp(40px, 6vw, 84px);
+    margin-top: clamp(24px, 3vw, 36px);
+    border: 1px solid var(--rule); border-radius: clamp(14px, 1.4vw, 22px);
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(217, 181, 107, 0.07), transparent 55%),
+      radial-gradient(ellipse at 100% 100%, rgba(127, 181, 163, 0.05), transparent 55%),
+      linear-gradient(180deg, rgba(245, 241, 234, 0.018), rgba(245, 241, 234, 0.005));
+    overflow: hidden;
+  }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--ink-dim);
+    display: flex; align-items: center; gap: 14px; margin-bottom: clamp(24px, 3.5vw, 40px);
+  }
+  .eyebrow .bar { flex: 0 0 56px; height: 1px; background: var(--ink-faint); }
+  .hero h1 {
+    margin: 0; font-weight: 400; line-height: 1.05; letter-spacing: -0.015em;
+    font-size: clamp(42px, 8vw, 100px);
+    opacity: 0; animation: fade-up 1s 0.2s ease-out forwards;
+  }
+  .hero h1 .game {
+    display: block; color: var(--gold); font-size: 0.42em; margin-top: 0.45em;
+    font-style: italic; letter-spacing: 0;
+  }
+  .hero .date {
+    margin: clamp(22px, 3vw, 36px) 0 0;
+    font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--ink-faint);
+    opacity: 0; animation: fade-up 1s 0.5s ease-out forwards;
+  }
+  .hero .intro {
+    margin: 16px 0 0; max-width: 60ch;
+    font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; color: var(--ink-dim);
+    opacity: 0; animation: fade-up 1s 0.7s ease-out forwards;
+  }
+  .hero .intro p { margin: 0; }
+  @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  .policy {
+    position: relative; margin-top: clamp(28px, 3.5vw, 44px);
+    border: 1px solid var(--rule); border-radius: clamp(14px, 1.4vw, 22px);
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(217,181,107,0.045), transparent 55%),
+      radial-gradient(ellipse at 100% 100%, rgba(127,181,163,0.035), transparent 55%),
+      linear-gradient(180deg, rgba(245,241,234,0.012), rgba(245,241,234,0.003));
+    overflow: hidden;
+  }
+  .section-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: clamp(28px, 4vw, 48px) clamp(24px, 5vw, 72px) clamp(18px, 2.5vw, 24px);
+    border-bottom: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--ink-dim);
+  }
+  .section-head .count { letter-spacing: 0.22em; color: var(--ink-faint); }
+  .clauses { padding: 0 clamp(24px, 5vw, 72px); }
+  .clause {
+    position: relative; display: grid; grid-template-columns: 80px 1fr;
+    gap: clamp(14px, 3vw, 40px); align-items: start;
+    padding: clamp(24px, 3.5vw, 36px) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .clause.last { border-bottom: 0; }
+  .clause .num {
+    font-family: "JetBrains Mono", monospace; font-size: 14px; letter-spacing: 0.24em;
+    color: var(--gold); padding-top: 10px;
+  }
+  .clause h2 {
+    margin: 0 0 12px; font-weight: 400; line-height: 1.15;
+    font-size: clamp(22px, 2.8vw, 30px); letter-spacing: -0.01em;
+  }
+  .clause p {
+    margin: 0 0 10px; max-width: 64ch;
+    font-family: "JetBrains Mono", monospace; font-size: 14px; line-height: 1.75;
+    letter-spacing: 0.01em; color: var(--ink-dim);
+  }
+  .clause p:last-child { margin-bottom: 0; }
+  .clause a, .hero a {
+    color: var(--ink); border-bottom: 1px solid var(--rule-strong);
+    transition: border-color 0.3s ease; overflow-wrap: anywhere;
+  }
+  .clause a:hover, .hero a:hover { border-color: var(--gold); }
+
+  footer.foot {
+    display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+    padding: 36px 8px 8px;
+    font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  footer.foot a { color: var(--ink-dim); }
+
+  /* ---------- language: without JS both show; the toggle hides one ---------- */
+  html[data-lang="en"] body [lang="ar"] { display: none; }
+  html[data-lang="ar"] body [lang="en"] { display: none; }
+  body [lang="ar"] { direction: rtl; }
+  body [lang="en"] { direction: ltr; }
+  .hero-title[lang="ar"], .clause[lang="ar"] h2 {
+    font-family: "Reem Kufi", "IBM Plex Sans Arabic", sans-serif; font-weight: 500; letter-spacing: 0;
+  }
+  .hero-title[lang="ar"] .game { font-style: normal; }
+  .clause[lang="ar"] p, .intro[lang="ar"] {
+    font-family: "IBM Plex Sans Arabic", sans-serif; letter-spacing: 0; line-height: 1.95;
+  }
+  .clause[lang="ar"] p { font-size: 16px; }
+  .clause[lang="ar"] .num { font-size: 17px; }
+  bdi { font-family: "IBM Plex Sans Arabic", sans-serif; font-style: normal; font-size: 0.92em; }
+  .date[lang="ar"], .section-head [lang="ar"], footer.foot [lang="ar"], .eyebrow [lang="ar"], .clause[lang="ar"] .num {
+    font-family: "IBM Plex Sans Arabic", sans-serif; letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 640px) {
+    .clause { grid-template-columns: 1fr; gap: 6px; }
+    .clause .num { padding-top: 0; }
+    .section-head { flex-direction: column; gap: 6px; }
+    .eyebrow .bar { flex-basis: 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .grain, .brand .pip { animation: none; }
+    .hero h1, .hero .date, .hero .intro { animation: none; opacity: 1; }
+  }
 </style>
 </head>
 <body>
-<main>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+  <div class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
-<section lang="ar">
-<h1>سياسة الخصوصية — لعبة «مدن الكلمات»</h1>
-<p class="date">آخر تحديث: 27 سبتمبر 2026</p>
+  <div class="shell">
+    <nav class="top">
+      <a href="/" class="brand"><span class="pip"></span>EMDASH</a>
+      <div class="lang" role="tablist" aria-label="Language">
+        <button type="button" data-set-lang="en">EN</button>
+        <button type="button" data-set-lang="ar" class="active">AR</button>
+      </div>
+    </nav>
 
-<p>تُطوّر لعبة «مدن الكلمات» شركة إم داش (EM DASH MARKETING AND ETRADING - L.L.C - O.P.C) في الإمارات العربية المتحدة. توضح هذه الصفحة ما يحدث لبياناتك عندما تلعب.</p>
+    <section class="hero">
+      <div class="eyebrow">
+        <span class="bar"></span>
+        <span lang="en">Privacy Policy · Game</span>
+        <span lang="ar">سياسة الخصوصية · لعبة</span>
+      </div>
+      <h1 class="hero-title" lang="ar">سياسة الخصوصية<span class="game">لعبة «مدن الكلمات»</span></h1>
+      <h1 class="hero-title" lang="en">Privacy Policy<span class="game">Cities of Words · «<bdi dir="rtl">مدن الكلمات</bdi>»</span></h1>
+      <p class="date" lang="ar">آخر تحديث: 27 سبتمبر 2026</p>
+      <p class="date" lang="en">Last updated: 27 September 2026</p>
+      <div class="intro" lang="ar"><p>تُطوّر لعبة «مدن الكلمات» شركة إم داش (EM DASH MARKETING AND ETRADING - L.L.C - O.P.C) في الإمارات العربية المتحدة. توضح هذه الصفحة ما يحدث لبياناتك عندما تلعب.</p></div>
+      <div class="intro" lang="en"><p>«<bdi dir="rtl">مدن الكلمات</bdi>» is developed by EM DASH MARKETING AND ETRADING - L.L.C - O.P.C («Em-Dash»), United Arab Emirates. This page explains what happens to your data when you play.</p></div>
+    </section>
 
-<h2>باختصار</h2>
-<p>اللعبة نفسها لا تجمع أي بيانات شخصية ولا ترسلها إلينا. لا يوجد حساب ولا تسجيل دخول، ولا نملك أي خادم يستقبل بياناتك. الجهة الوحيدة التي قد تجمع بيانات هي خدمة الإعلانات من Google، كما هو موضح أدناه.</p>
-
-<h2>ما يُحفظ على جهازك فقط</h2>
-<p>تُحفظ تقدّمك في اللعبة (المرحلة، الجواهر، الكلمات الإضافية، الإعدادات) على جهازك فقط، ولا تغادره. عند حذف اللعبة أو مسح بياناتها يُحذف كل ذلك نهائيًا.</p>
-
-<h2>الإعلانات (Google AdMob)</h2>
-<p>تعرض اللعبة إعلانات عبر خدمة Google AdMob. لكي تعرض Google الإعلانات وتقيس أداءها وتمنع الاحتيال، قد تجمع معرّف الإعلانات في جهازك، وعنوان IP، ومعلومات عامة عن الجهاز، وتفاعلك مع الإعلانات. تُعالَج هذه البيانات لدى Google وفق سياستها:
+    <section class="policy">
+      <div class="section-head">
+        <span><span lang="en">The policy</span><span lang="ar">السياسة</span></span>
+        <span class="count"><span lang="en">9 clauses</span><span lang="ar">٩ بنود</span></span>
+      </div>
+      <div class="clauses">
+      <article class="clause" lang="ar" dir="rtl">
+        <div class="num">٠١</div>
+        <div class="text">
+          <h2>باختصار</h2>
+          <p>اللعبة نفسها لا تجمع أي بيانات شخصية ولا ترسلها إلينا. لا يوجد حساب ولا تسجيل دخول، ولا نملك أي خادم يستقبل بياناتك. الجهة الوحيدة التي قد تجمع بيانات هي خدمة الإعلانات من Google، كما هو موضح أدناه.</p>
+        </div>
+      </article>
+      <article class="clause" lang="ar" dir="rtl">
+        <div class="num">٠٢</div>
+        <div class="text">
+          <h2>ما يُحفظ على جهازك فقط</h2>
+          <p>تُحفظ تقدّمك في اللعبة (المرحلة، الجواهر، الكلمات الإضافية، الإعدادات) على جهازك فقط، ولا تغادره. عند حذف اللعبة أو مسح بياناتها يُحذف كل ذلك نهائيًا.</p>
+        </div>
+      </article>
+      <article class="clause" lang="ar" dir="rtl">
+        <div class="num">٠٣</div>
+        <div class="text">
+          <h2>الإعلانات (Google AdMob)</h2>
+          <p>تعرض اللعبة إعلانات عبر خدمة Google AdMob. لكي تعرض Google الإعلانات وتقيس أداءها وتمنع الاحتيال، قد تجمع معرّف الإعلانات في جهازك، وعنوان IP، ومعلومات عامة عن الجهاز، وتفاعلك مع الإعلانات. تُعالَج هذه البيانات لدى Google وفق سياستها:
 <a href="https://policies.google.com/technologies/partner-sites">كيف تستخدم Google البيانات من التطبيقات التي تستخدم خدماتها</a>.</p>
 <p>يمكنك إعادة تعيين معرّف الإعلانات أو حذفه من إعدادات جهازك (الإعدادات ← Google ← الإعلانات)، أو إيقاف الإعلانات المخصّصة.</p>
-
-<h2>التذكيرات</h2>
-<p>إذا سمحت بالإشعارات، تُجدول اللعبة تذكيرات المكافأة اليومية على جهازك نفسه. لا تُرسَل أي بيانات إلى أي خادم لذلك. يمكنك إيقافها من إعدادات اللعبة أو من إعدادات الجهاز.</p>
-
-<h2>تقييم اللعبة</h2>
-<p>قد تعرض اللعبة نافذة التقييم الخاصة بمتجر Google Play. هذه النافذة تديرها Google، ولا نستلم منها أي بيانات عنك.</p>
-
-<h2>الاتصال بالإنترنت</h2>
-<p>يمكن لعب اللعبة كاملة دون إنترنت. يُستخدم الاتصال لعرض الإعلانات فقط.</p>
-
-<h2>الأطفال</h2>
-<p>اللعبة غير موجّهة للأطفال دون 13 عامًا، ولا نجمع عن قصد أي بيانات عنهم.</p>
-
-<h2>التغييرات</h2>
-<p>إذا غيّرنا هذه السياسة، سننشر النسخة الجديدة في هذه الصفحة مع تاريخ التحديث.</p>
-
-<h2>التواصل</h2>
-<p>لأي سؤال عن الخصوصية: <a href="mailto:contact@emdash.ae">contact@emdash.ae</a></p>
-</section>
-
-<hr>
-
-<section lang="en">
-<h1>Privacy Policy — «مدن الكلمات»</h1>
-<p class="date">Last updated: 27 September 2026</p>
-
-<p>«مدن الكلمات» is developed by EM DASH MARKETING AND ETRADING - L.L.C - O.P.C («Em-Dash»), United Arab Emirates. This page explains what happens to your data when you play.</p>
-
-<h2>In short</h2>
-<p>The game itself collects no personal data and sends nothing to us. There is no account, no sign-in, and we run no server that receives your data. The only party that may collect data is Google's advertising service, described below.</p>
-
-<h2>Stored on your device only</h2>
-<p>Your progress (stage, gems, extra words, settings) is stored only on your device and never leaves it. Uninstalling the game or clearing its data deletes it permanently.</p>
-
-<h2>Advertising (Google AdMob)</h2>
-<p>The game shows ads through Google AdMob. To serve and measure ads and prevent fraud, Google may collect your device's advertising ID, IP address, general device information and your interactions with ads. Google processes this data under its own policy:
+        </div>
+      </article>
+      <article class="clause" lang="ar" dir="rtl">
+        <div class="num">٠٤</div>
+        <div class="text">
+          <h2>التذكيرات</h2>
+          <p>إذا سمحت بالإشعارات، تُجدول اللعبة تذكيرات المكافأة اليومية على جهازك نفسه. لا تُرسَل أي بيانات إلى أي خادم لذلك. يمكنك إيقافها من إعدادات اللعبة أو من إعدادات الجهاز.</p>
+        </div>
+      </article>
+      <article class="clause" lang="ar" dir="rtl">
+        <div class="num">٠٥</div>
+        <div class="text">
+          <h2>تقييم اللعبة</h2>
+          <p>قد تعرض اللعبة نافذة التقييم الخاصة بمتجر Google Play. هذه النافذة تديرها Google، ولا نستلم منها أي بيانات عنك.</p>
+        </div>
+      </article>
+      <article class="clause" lang="ar" dir="rtl">
+        <div class="num">٠٦</div>
+        <div class="text">
+          <h2>الاتصال بالإنترنت</h2>
+          <p>يمكن لعب اللعبة كاملة دون إنترنت. يُستخدم الاتصال لعرض الإعلانات فقط.</p>
+        </div>
+      </article>
+      <article class="clause" lang="ar" dir="rtl">
+        <div class="num">٠٧</div>
+        <div class="text">
+          <h2>الأطفال</h2>
+          <p>اللعبة غير موجّهة للأطفال دون 13 عامًا، ولا نجمع عن قصد أي بيانات عنهم.</p>
+        </div>
+      </article>
+      <article class="clause" lang="ar" dir="rtl">
+        <div class="num">٠٨</div>
+        <div class="text">
+          <h2>التغييرات</h2>
+          <p>إذا غيّرنا هذه السياسة، سننشر النسخة الجديدة في هذه الصفحة مع تاريخ التحديث.</p>
+        </div>
+      </article>
+      <article class="clause" lang="ar" dir="rtl">
+        <div class="num">٠٩</div>
+        <div class="text">
+          <h2>التواصل</h2>
+          <p>لأي سؤال عن الخصوصية: <a href="mailto:contact@emdash.ae">contact@emdash.ae</a></p>
+        </div>
+      </article>
+      <article class="clause" lang="en" dir="ltr">
+        <div class="num">01</div>
+        <div class="text">
+          <h2>In short</h2>
+          <p>The game itself collects no personal data and sends nothing to us. There is no account, no sign-in, and we run no server that receives your data. The only party that may collect data is Google's advertising service, described below.</p>
+        </div>
+      </article>
+      <article class="clause" lang="en" dir="ltr">
+        <div class="num">02</div>
+        <div class="text">
+          <h2>Stored on your device only</h2>
+          <p>Your progress (stage, gems, extra words, settings) is stored only on your device and never leaves it. Uninstalling the game or clearing its data deletes it permanently.</p>
+        </div>
+      </article>
+      <article class="clause" lang="en" dir="ltr">
+        <div class="num">03</div>
+        <div class="text">
+          <h2>Advertising (Google AdMob)</h2>
+          <p>The game shows ads through Google AdMob. To serve and measure ads and prevent fraud, Google may collect your device's advertising ID, IP address, general device information and your interactions with ads. Google processes this data under its own policy:
 <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a>.</p>
 <p>You can reset or delete your advertising ID, or opt out of personalised ads, in your device settings (Settings → Google → Ads).</p>
+        </div>
+      </article>
+      <article class="clause" lang="en" dir="ltr">
+        <div class="num">04</div>
+        <div class="text">
+          <h2>Reminders</h2>
+          <p>If you allow notifications, the game schedules its daily-reward reminders on your device itself. No data is sent to any server for this. You can turn them off in the game's settings or your device's settings.</p>
+        </div>
+      </article>
+      <article class="clause" lang="en" dir="ltr">
+        <div class="num">05</div>
+        <div class="text">
+          <h2>Rating the game</h2>
+          <p>The game may show Google Play's in-app review card. It is run by Google; we receive no data about you from it.</p>
+        </div>
+      </article>
+      <article class="clause" lang="en" dir="ltr">
+        <div class="num">06</div>
+        <div class="text">
+          <h2>Internet connection</h2>
+          <p>The whole game can be played offline. The connection is used only to show ads.</p>
+        </div>
+      </article>
+      <article class="clause" lang="en" dir="ltr">
+        <div class="num">07</div>
+        <div class="text">
+          <h2>Children</h2>
+          <p>The game is not directed at children under 13, and we do not knowingly collect data about them.</p>
+        </div>
+      </article>
+      <article class="clause" lang="en" dir="ltr">
+        <div class="num">08</div>
+        <div class="text">
+          <h2>Changes</h2>
+          <p>If this policy changes, the new version will be posted on this page with its update date.</p>
+        </div>
+      </article>
+      <article class="clause" lang="en" dir="ltr">
+        <div class="num">09</div>
+        <div class="text">
+          <h2>Contact</h2>
+          <p>Privacy questions: <a href="mailto:contact@emdash.ae">contact@emdash.ae</a></p>
+        </div>
+      </article>
+      </div>
+    </section>
 
-<h2>Reminders</h2>
-<p>If you allow notifications, the game schedules its daily-reward reminders on your device itself. No data is sent to any server for this. You can turn them off in the game's settings or your device's settings.</p>
+    <footer class="foot">
+      <div><a href="/"><span lang="en">© 2026 Emdash</span><span lang="ar">© ٢٠٢٦ إم داش</span></a></div>
+      <div>
+        <span lang="en">Registered with the Department of Economic Development · Abu Dhabi</span>
+        <span lang="ar">مسجلة لدى دائرة التنمية الاقتصادية · أبوظبي</span>
+      </div>
+    </footer>
+  </div>
 
-<h2>Rating the game</h2>
-<p>The game may show Google Play's in-app review card. It is run by Google; we receive no data about you from it.</p>
-
-<h2>Internet connection</h2>
-<p>The whole game can be played offline. The connection is used only to show ads.</p>
-
-<h2>Children</h2>
-<p>The game is not directed at children under 13, and we do not knowingly collect data about them.</p>
-
-<h2>Changes</h2>
-<p>If this policy changes, the new version will be posted on this page with its update date.</p>
-
-<h2>Contact</h2>
-<p>Privacy questions: <a href="mailto:contact@emdash.ae">contact@emdash.ae</a></p>
-</section>
-
-</main>
+<script>
+  (function () {
+    var html = document.documentElement;
+    var btns = document.querySelectorAll('[data-set-lang]');
+    var clauses = document.querySelectorAll('.clause');
+    function set(lang) {
+      html.setAttribute('data-lang', lang);
+      html.setAttribute('lang', lang);
+      html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      document.title = lang === 'ar'
+        ? 'سياسة الخصوصية — مدن الكلمات | Emdash'
+        : 'Privacy Policy — Cities of Words | Emdash';
+      btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-set-lang') === lang); });
+      var shown = [].filter.call(clauses, function (c) { return c.getAttribute('lang') === lang; });
+      clauses.forEach(function (c) { c.classList.remove('last'); });
+      if (shown.length) shown[shown.length - 1].classList.add('last');
+    }
+    btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-set-lang')); }); });
+    var q = new URLSearchParams(location.search).get('lang');
+    set(q === 'en' ? 'en' : 'ar');
+  })();
+</script>
 </body>
 </html>
