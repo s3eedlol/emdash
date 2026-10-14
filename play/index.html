@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مدن الكلمات — Google Play</title>
+<meta name="description" content="مدن الكلمات: لعبة كلمات عربية. وصّل الحروف في رحلة عبر 44 مدينة عربية. مجانية وتعمل دون إنترنت.">
+<meta name="robots" content="noindex">
+<script>
+  // Forward to the Play listing, carrying utm_* tags into Play's install referrer
+  // so installs from each ad network show up separately in Play Console and GA4.
+  (function () {
+    var q = new URLSearchParams(location.search), ref = [];
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+      if (q.get(k)) ref.push(k + '=' + q.get(k));
+    });
+    if (!ref.length) ref.push('utm_source=emdash.ae');
+    var url = 'https://play.google.com/store/apps/details?id=ae.emdash.wasl&referrer=' + encodeURIComponent(ref.join('&'));
+    document.documentElement.setAttribute('data-play', url);
+    location.replace(url);
+  })();
+</script>
+<style>
+  :root { --bg: #0e1a24; --ink: #f6efe1; --gold: #f2b94b; --muted: #b7c2cc; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+         background: var(--bg); color: var(--ink); text-align: center; padding: 24px 16px;
+         font-family: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif; }
+  h1 { color: var(--gold); font-size: 40px; margin: 0 0 8px; }
+  p { color: var(--muted); margin: 0 0 28px; line-height: 1.7; }
+  a { display: inline-block; background: var(--gold); color: #1d1405; text-decoration: none;
+      font-weight: 700; padding: 14px 28px; border-radius: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>مدن الكلمات</h1>
+  <p>لعبة كلمات عربية: وصّل الحروف في رحلة عبر 44 مدينة عربية.<br>مجانية وتعمل دون إنترنت.</p>
+  <a id="go" href="https://play.google.com/store/apps/details?id=ae.emdash.wasl">حمّل اللعبة من Google Play</a>
+</main>
+<script>document.getElementById('go').href = document.documentElement.getAttribute('data-play');</script>
+</body>
+</html>
