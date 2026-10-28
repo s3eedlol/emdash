@@ -1,6 +1,7 @@
 OWNERDOMAIN=emdash.ae
 google.com, pub-6530344513895523, DIRECT, f08c47fec0942fa0
 ironsrc.com, 696069, DIRECT
+facebook.com, 2089852198642687, DIRECT, c3e20eee3f780d68
 
 # ironSource (Unity LevelPlay) authorized resellers - copied from Unity's app-ads.txt page, 2026-10-28
 media.net, 8CUH2L333, RESELLER
