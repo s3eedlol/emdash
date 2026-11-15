@@ -3,13 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>مدن الكلمات — Google Play</title>
+<title>مدن الكلمات</title>
 <meta name="description" content="مدن الكلمات: لعبة كلمات عربية. وصّل الحروف في رحلة عبر 44 مدينة عربية. مجانية وتعمل دون إنترنت.">
 <meta name="robots" content="noindex">
 <script>
-  // Forward to the Play listing, carrying utm_* tags into Play's install referrer
-  // so installs from each ad network show up separately in Play Console and GA4.
+  // iPhone / iPad go to the App Store (2026-11-15). An iPad on iPadOS 13+ reports a
+  // Mac user agent, so a Mac that takes touches counts as one.
+  // Everyone else goes to the Play listing, carrying utm_* tags into Play's install
+  // referrer so installs from each ad network show up separately in Play Console and GA4.
   (function () {
+    var ua = navigator.userAgent || '';
+    var apple = /iPhone|iPad|iPod/.test(ua) ||
+      (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    if (apple) {
+      var store = 'https://apps.apple.com/app/id6834801306';
+      document.documentElement.setAttribute('data-play', store);
+      document.documentElement.setAttribute('data-store', 'App Store');
+      location.replace(store);
+      return;
+    }
     var q = new URLSearchParams(location.search), ref = [];
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
       if (q.get(k)) ref.push(k + '=' + q.get(k));
@@ -17,6 +29,7 @@
     if (!ref.length) ref.push('utm_source=emdash.ae');
     var url = 'https://play.google.com/store/apps/details?id=ae.emdash.wasl&referrer=' + encodeURIComponent(ref.join('&'));
     document.documentElement.setAttribute('data-play', url);
+    document.documentElement.setAttribute('data-store', 'Google Play');
     location.replace(url);
   })();
 </script>
@@ -38,6 +51,10 @@
   <p>لعبة كلمات عربية: وصّل الحروف في رحلة عبر 44 مدينة عربية.<br>مجانية وتعمل دون إنترنت.</p>
   <a id="go" href="https://play.google.com/store/apps/details?id=ae.emdash.wasl">حمّل اللعبة من Google Play</a>
 </main>
-<script>document.getElementById('go').href = document.documentElement.getAttribute('data-play');</script>
+<script>
+  var go = document.getElementById('go'), root = document.documentElement;
+  go.href = root.getAttribute('data-play');
+  go.textContent = 'حمّل اللعبة من ' + root.getAttribute('data-store');
+</script>
 </body>
 </html>
