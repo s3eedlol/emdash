@@ -269,8 +269,8 @@
         <div class="num">04</div>
         <div class="text">
           <h2>الدوري الأسبوعي</h2>
-          <p>تضعك اللعبة في دوري أسبوعي مع لاعبين آخرين. لذلك ترسل إلى خادمنا (Cloud Functions وCloud Firestore من Google، في بلجيكا): معرّفًا عشوائيًا لنسخة اللعبة، واسمًا مولَّدًا من مدينة ورقم، وعلم بلدك بحسب إعدادات المنطقة في جهازك، ونقاطك هذا الأسبوع. يرى اللاعبون في مجموعتك الاسم والعلم والنقاط والترتيب فقط. لا يُرسَل اسمك الحقيقي ولا بريدك.</p>
-          <p>إن سجّلت الدخول يمكنك تغيير اسمك في الدوري؛ يراه اللاعبون الآخرون، فاختر اسمًا لا يكشف هويتك. نستخدم Firebase App Check من Google للتأكد من أن الطلبات تأتي من اللعبة الحقيقية.</p>
+          <p>تضعك اللعبة في دوري أسبوعي مع لاعبين آخرين. لذلك ترسل إلى خادمنا (Cloud Functions وCloud Firestore من Google، في بلجيكا): معرّفًا عشوائيًا لنسخة اللعبة، واسمك في الدوري («لاعب» ورقم، أو اسمًا تختاره)، وعلم بلدك بحسب إعدادات المنطقة في جهازك، ونقاطك هذا الأسبوع. يرى اللاعبون في مجموعتك الاسم والعلم والنقاط والترتيب فقط. لا يُرسَل اسمك الحقيقي ولا بريدك.</p>
+          <p>إن سجّلت الدخول يمكنك اختيار اسمك في الدوري؛ يراه اللاعبون الآخرون، فاختر اسمًا لا يكشف هويتك. نفحص كل اسم قبل قبوله، ويمكن لأي لاعب الإبلاغ عن اسم فيختفي عنده فورًا؛ نراجع البلاغات، والاسم الذي يُبلَّغ عنه ثلاث مرات يعود «لاعب» ورقمًا. نستخدم Firebase App Check من Google للتأكد من أن الطلبات تأتي من اللعبة الحقيقية.</p>
         </div>
       </article>
       <article class="clause" lang="ar" dir="rtl">
@@ -375,8 +375,8 @@
         <div class="num">04</div>
         <div class="text">
           <h2>The weekly league</h2>
-          <p>The game puts you in a weekly league with other players. For this it sends our server (Google's Cloud Functions and Cloud Firestore, in Belgium): a random ID for this install of the game, a generated name (a city and a number), your country's flag from your device's region setting, and your points this week. Players in your group see only the name, flag, points and rank. Your real name and email are never sent.</p>
-          <p>If you sign in you can change your league name; other players see it, so choose one that doesn't identify you. We use Google's Firebase App Check to make sure requests come from the real game.</p>
+          <p>The game puts you in a weekly league with other players. For this it sends our server (Google's Cloud Functions and Cloud Firestore, in Belgium): a random ID for this install of the game, your league name («<bdi dir="rtl">لاعب</bdi>» and a number, or a name you choose), your country's flag from your device's region setting, and your points this week. Players in your group see only the name, flag, points and rank. Your real name and email are never sent.</p>
+          <p>If you sign in you can choose your league name; other players see it, so choose one that doesn't identify you. We check every name before accepting it, and any player can report a name, which then disappears for them at once; we review reports, and a name reported three times goes back to «<bdi dir="rtl">لاعب</bdi>» and a number. We use Google's Firebase App Check to make sure requests come from the real game.</p>
         </div>
       </article>
       <article class="clause" lang="en" dir="ltr">
